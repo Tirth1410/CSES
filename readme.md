@@ -22,11 +22,11 @@ If you are a beginner or an experienced programmer looking to brush up on your s
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/your-repo.git
+    git clone https://github.com/Tirth1410/CSES.git
     ```
 2. Navigate to the directory:
     ```bash
-    cd cses-java-solutions
+    cd CSES
     ```
 3. Compile and run any problem's solution:
     ```bash
