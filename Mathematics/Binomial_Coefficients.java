@@ -2,13 +2,32 @@ package CSES.Mathematics;
 
 import java.io.*;
 import java.util.*;
-public class Counting_Coprime_Pairs {
-    //    static FastReader fr =  new FastReader();
+
+//MY SUBMISSION : https://cses.fi/paste/e8ccf74abe19de5aa6a4cb/
+
+
+public class Binomial_Coefficients {
+    static FastReader fr =  new FastReader();
     static PrintWriter out = new PrintWriter(System.out);
+    static long [] fact;
 
+    public static void Factorial(int n){
+        fact = new long [n+1];
+
+        fact[0] = 1l;
+        fact[1] = 1l;
+        for(int i=2; i<=n; i++){
+            fact[i] = ModMul(fact[i-1], i);
+        }
+    }
     public static void Solve() throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int a = fr.nextInt();
+        int b = fr.nextInt();
+        long ans = fact[a];
+        ans = ModMul(ans, BinaryExpo(fact[b], MOD-2l));
+        ans = ModMul(ans, BinaryExpo(fact[a-b], MOD-2l));
 
+        out.println(ans);
     }
 
     static int CustomCompare(long a, long b){
@@ -30,8 +49,9 @@ public class Counting_Coprime_Pairs {
 
     //    -------------------------------------------------------------------------------------------------------
     public static void main(String args[]) throws IOException {
-//        int t = fr.nextInt();
-        int t = 1;
+        Factorial((int)1e6);
+        int t = fr.nextInt();
+//        int t = 1;
         //        long SqxtasrtTime = System.currentTimeMillis();
         while (t-- > 0) {
             Solve();
@@ -42,33 +62,33 @@ public class Counting_Coprime_Pairs {
     }
 
     //    --------------------------------FOR TAKING FASTER INPUTS----------------------------------------
-//    static class FastReader {
-//        BufferedReader br;
-//        StringTokenizer st;
-//        public FastReader() { br = new BufferedReader(new InputStreamReader(System.in));}
-//        String next()
-//        {
-//            while (st == null || !st.hasMoreElements()) {
-//                try { st = new StringTokenizer(br.readLine()); }
-//                catch (IOException e) { e.printStackTrace(); }
-//            }
-//            return st.nextToken();
-//        }
-//        int nextInt() { return Integer.parseInt(next()); }
-//        long nextLong() { return Long.parseLong(next()); }
-//        double nextDouble() { return Double.parseDouble(next()); }
-//        String nextLine()
-//        {
-//            String str = "";
-//            try {
-//                if(st.hasMoreTokens()){str = st.nextToken("\n");}
-//                else{str = br.readLine();}
-//            }
-//            catch (IOException e) {e.printStackTrace();}
-//            return str;
-//        }
-//
-//    }
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+        public FastReader() { br = new BufferedReader(new InputStreamReader(System.in));}
+        String next()
+        {
+            while (st == null || !st.hasMoreElements()) {
+                try { st = new StringTokenizer(br.readLine()); }
+                catch (IOException e) { e.printStackTrace(); }
+            }
+            return st.nextToken();
+        }
+        int nextInt() { return Integer.parseInt(next()); }
+        long nextLong() { return Long.parseLong(next()); }
+        double nextDouble() { return Double.parseDouble(next()); }
+        String nextLine()
+        {
+            String str = "";
+            try {
+                if(st.hasMoreTokens()){str = st.nextToken("\n");}
+                else{str = br.readLine();}
+            }
+            catch (IOException e) {e.printStackTrace();}
+            return str;
+        }
+
+    }
     static int MOD = (int)(1e9)+7;
     static int maxI = Integer.MAX_VALUE;
     static int minI = Integer.MIN_VALUE;
