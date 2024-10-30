@@ -46,16 +46,16 @@ Here's how the repository is organized:
 cses-java-solutions/
 │
 ├── SortingAndSearching/
-│   ├── 1618_MissingNumber.java
-│   ├── 1619_Appartments.java
+│   ├── Missing_Number.java
+│   ├── Appartments.java
 │   └── ...
 ├── DynamicProgramming/
-│   ├── 1633_DiceCombinations.java
-│   ├── 1634_MinimizingCoins.java
+│   ├── Dice_Combinations.java
+│   ├── Minimizing_Coins.java
 │   └── ...
 ├── GraphAlgorithms/
-│   ├── 1666_BuildingRoads.java
-│   ├── 1667_Projects.java
+│   ├── Building_Roads.java
+│   ├── Projects.java
 │   └── ...
 ├── README.md
 └── LICENSE
