@@ -1,73 +1,60 @@
 package CSES.Ranged_Queries;
 
+
 import java.io.*;
 import java.util.*;
 
-public class Range_XOR_Queries {
+public class Range_Update_Queries {
     static FastReader fr = new FastReader();
     static PrintWriter out = new PrintWriter(System.out);
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    static String curr = "";
-    public static int compare(String a, String b) {
-        char [] temp = a.toCharArray();
-        int p1 = a.length()-1, p2=b.length()-1;
-        while (p2 >= 0 && p1 >= 0) {
-            if(a.charAt(p1) == b.charAt(p2)) {
-                temp[p1]='0';
-            } else {
-                temp[p1]='1';
-            }
-            p1--;
-            p2--;
-        }
-
-        for(int i=0; i<a.length(); i++) {
-            if(curr.charAt(i) > temp[i]) return 1;
-            else if(curr.charAt(i) < temp[i]) {
-                StringBuilder SB = new StringBuilder();
-                for(char ch : temp) SB.append(ch);
-                curr = SB.toString();
-                return -1;
-            }
-        }
-        return -1;
-    }
     public static void Solve() throws IOException {
         int n = fr.nextInt();
         int q = fr.nextInt();
 
-        long [] x = new long[2*n+10];
-        for(int i=0; i<n; i++) x[i+n] = fr.nextLong();
+        long [] Seq = new long [2*n+10];
 
-        build(x, n);
-
-        StringBuilder ans = new StringBuilder();
-
+        for(int i=0; i<n; i++) Seq[i+n] = fr.nextLong();
+        build(Seq, n);
         while (q-- > 0) {
-            int l = fr.nextInt();
-            int r = fr.nextInt();
+            int temp = fr.nextInt();
+            if(temp == 2) {
+                int index = fr.nextInt()-1;
+                out.println(query(Seq, n, index)) ;
+            } else {
+                int l = fr.nextInt()-1;
+                int r = fr.nextInt()-1;
+                long x = fr.nextInt();
 
-            ans.append(query(x, n, l-1, r) + "\n");
+                update(Seq, n, l, r+1, x);
+            }
         }
-
-        out.println(ans.toString());
     }
 
     static void build(long [] Seq, int n) {
         for(int i=n-1; i>=0; i--) {
-            Seq[i] = Seq[i<<1] ^ Seq[(i<<1)|1];
+            Seq[i] = 0l;
         }
     }
 
-    static long query(long [] Seq, int n, int l, int r) {
-        long XOR = 0l;
-        for(int i=l+n, j=r+n; i<j; i>>=1, j>>=1) {
-            if((i&1) != 0) XOR ^= Seq[i++];
-            if((j&1) != 0) XOR ^= Seq[--j];
+    static long query(long [] Seq, int n, int idx) {
+        long curr = 0;
+        idx+=n;
+        while (idx > 0) {
+            curr += Seq[idx];
+            idx >>= 1;
         }
+        curr += Seq[idx];
 
-        return XOR;
+        return curr;
+    }
+
+    static void update(long [] Seq, int n, int l, int r, long addon) {
+        for(int i=l+n, j=r+n; i<j; i>>=1, j>>=1) {
+            if((i&1) != 0) Seq[i++] += addon;
+            if((j&1) != 0) Seq[--j] += addon;
+        }
     }
 
     //    -------------------------------------------------------------------------------------------------------
