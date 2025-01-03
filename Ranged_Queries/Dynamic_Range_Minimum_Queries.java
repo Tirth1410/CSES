@@ -22,7 +22,7 @@ public class Dynamic_Range_Minimum_Queries {
 //        }
 
         StringBuilder ans = new StringBuilder();
-        SegTree st = new SegTree(n);
+        SegTree2 st = new SegTree2(n);
         st.build(Seq, n);
 
         for(int i=0; i<m; i++){
@@ -90,21 +90,21 @@ public class Dynamic_Range_Minimum_Queries {
 //    public static long min(long a, long b) {return Math.min(a, b);}
 }
 
-class Node {
+class Node2 {
     long min;
-    Node left;
-    Node right;
-    public Node(long a) {
+    Node2 left;
+    Node2 right;
+    public Node2(long a) {
         this.min = a;
     }
 
-    public Node() {
+    public Node2() {
         this.min=Integer.MAX_VALUE;
     }
 }
 
-class SegTree {
-    public SegTree(int n) {
+class SegTree2 {
+    public SegTree2(int n) {
 
     }
 
