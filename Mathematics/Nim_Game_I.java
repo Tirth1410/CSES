@@ -2,19 +2,27 @@ package CSES.Mathematics;
 
 import java.io.*;
 import java.util.*;
-public class Bracket_Sequences_I {
+
+public class Nim_Game_I {
     static FastReader fr = new FastReader();
     static PrintWriter out = new PrintWriter(System.out);
     //    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public static void Solve(int index) throws IOException {
-        int n = fr.nextInt();
+        long n = fr.nextInt();
+        long XOR = 0l;
+        for(int i=0; i<n; i++) {
+            XOR ^= fr.nextLong();
+        }
 
+        if(XOR == 0) out.println("second");
+        else out.println("first");
     }
+
     //    -------------------------------------------------------------------------------------------------------
     public static void main(String args[]) throws IOException {
-//        int t = fr.nextInt();
-        int t = 1;
+        int t = fr.nextInt();
+//        int t = 1;
 
         for(int i=0; i<t; i++) {
             Solve(i);
@@ -63,4 +71,3 @@ public class Bracket_Sequences_I {
     static int maxI = Integer.MAX_VALUE;
     static int minI = Integer.MIN_VALUE;
 }
-
