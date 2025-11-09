@@ -10,15 +10,6 @@ public class Finding_Period {
     static PrintWriter out = new PrintWriter(System.out);
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    public static long ModMul(long a,long b, long mod) {
-        return ((a % mod) * (b % mod)) % mod;
-    }
-
-    static long getHash(int l, int r, long [] pref, long [] base_pow) {
-        long h = pref[r + 1] - (base_pow[r - l + 1] * pref[l] % MOD) % MOD;
-        return h < 0 ? h + MOD : h;
-    }
-
     public static void Solve() throws IOException {
 //        int t = fr.nextInt();
         int t = 1;
