@@ -40,20 +40,6 @@ public class Road_Preparation {
         return 1;
     }
 
-    static int Jump(int node, int k, int [][] next) {
-        if(k < 0) return -1;
-        int ptr=0;
-        while(k > 0) {
-            if((k&1) != 0) {
-                node = next[node][ptr];
-            }
-            ptr++;
-            k >>= 1;
-        }
-
-        return node;
-    }
-
     public static void main (String[] args) throws java.lang.Exception
     {
         Solve();
